@@ -3,6 +3,14 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
+app.use(bodyParser.json())
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+)
+
+
 const students = [
     { id: 1, name: 'Steve Peterson' },
     { id: 2, name: 'John Doe' },
@@ -42,4 +50,6 @@ app.post('/grades', (req, res) => {
     res.send(req.body);
 });
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => {
+    console.log(`Example app is listening on ${port}`);
+})
