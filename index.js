@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
@@ -10,11 +11,11 @@ const students = [
     { id: 5, name: 'George Washington' }
 ];
 
-const grades = [
+var grades = [
     { id: 1, grade: 'A' },
     { id: 2, grade: 'A' },
     { id: 3, grade: 'B' },
-    { id: 1, grade: 'C' }
+    { id: 4, grade: 'C' }
 ]
 
 app.get('/', (req, res) => {
@@ -36,12 +37,9 @@ app.get('/grades/:id', (req, res) => {
     res.send(idGrades);
 });
 
+app.post('/grades', (req, res) => {
+    app.use(bodyParser.json());
+    res.send(req.body);
+});
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
-
-
-
-
-//app.get()
-//app.post()
-//app.put()
-//app.delete()
